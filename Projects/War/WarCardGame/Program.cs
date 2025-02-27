@@ -36,8 +36,8 @@ class Program
         {
             string card1 = deck[i];
             string card2 = deck[i + 1];
-            Console.WriteLine($"Player 1 plays {card1}");
-            Console.WriteLine($"Player 2 plays {card2}");
+            Console.WriteLine($"Player 1 plays:\n{GetCardVisual(card1)}");
+            Console.WriteLine($"Player 2 plays:\n{GetCardVisual(card2)}");
 
             int card1Value = GetCardValue(card1);
             int card2Value = GetCardValue(card2);
@@ -74,6 +74,22 @@ class Program
         {
             Console.WriteLine("The game is a tie!");
         }
+    }
+
+    static string GetCardVisual(string card)
+    {
+        string rank = card.Split(' ')[0];
+        string suit = card.Split(' ')[2];
+        char suitSymbol = suit switch
+        {
+            "Hearts" => '♥',
+            "Diamonds" => '♦',
+            "Clubs" => '♣',
+            "Spades" => '♠',
+            _ => '?'
+        };
+        
+        return $"|     |\n|  {rank}  |\n|  {suitSymbol}  |\n|     |";
     }
 
     static int GetCardValue(string card)
